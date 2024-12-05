@@ -6,6 +6,7 @@ import mockupRight from "../../assets/images/mockup-right-community.svg";
 const Container = styled.section`
   position: relative;
   width: 100%;
+  height: 100vh;
 `;
 
 const ContentGroup = styled.div`
@@ -14,6 +15,7 @@ const ContentGroup = styled.div`
   align-items: center;
   gap: 20px;
   position: relative;
+  margin-top: -50px;
 `;
 
 const StyledTitle = styled.h1`

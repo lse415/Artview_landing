@@ -1,5 +1,6 @@
 import Header from "./components/Header/Header";
 import MainSection from "./components/Main/MainSection";
+import PointSection from "./components/Point/PointSection";
 import GlobalStyle from "./styles/GlobalStyle";
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
       <GlobalStyle />
       <Header />
       <MainSection />
+      <PointSection />
     </>
   );
 }
