@@ -1,3 +1,4 @@
+import Header from "./components/Header";
 import GlobalStyle from "./styles/GlobalStyle";
 import styled from "styled-components";
 
@@ -19,6 +20,7 @@ function App() {
   return (
     <>
       <GlobalStyle />
+      <Header />
       <Container>
         <Title>Welcome to Artview Landing</Title>
       </Container>
