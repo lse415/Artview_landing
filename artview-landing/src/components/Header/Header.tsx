@@ -3,7 +3,6 @@ import Wrapper from "../Wrapper";
 
 const HeaderContainer = styled.header`
   width: 100%;
-  background-color: #f5f5f5;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,11 +13,11 @@ const HeaderContent = styled.div`
   justify-content: space-between;
   align-items: center;
   margin: 0 120px;
-  padding: 20px 0;
+  padding: 40px 0;
 `;
 
 const Logo = styled.h1`
-  font-size: 1.5rem;
+  font-size: 2rem;
   color: #333;
 `;
 
