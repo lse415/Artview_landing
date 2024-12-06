@@ -20,7 +20,7 @@ const fadeIn = keyframes`
   }
 `;
 
-const Section = styled.section`
+const Container = styled.div`
   padding: 80px 0;
   text-align: center;
   position: relative;
@@ -28,7 +28,43 @@ const Section = styled.section`
   overflow: hidden; /* 둥근 모서리 안에서 내용 잘리게 */
 `;
 
-const SmallTitle = styled.div<{ isVisible: boolean }>`
+const SmallTitleGroup = styled.div<{ isVisible: boolean }>`
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+
+  opacity: 0;
+  animation: ${({ isVisible }) => (isVisible ? fadeIn : "none")} 0.8s ease-out
+    forwards;
+  animation-delay: 0.3s;
+`;
+
+const SmallTitleBackground = styled.div`
+  position: absolute;
+  top: 50%; /* SmallTitle 중심에 배치 */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+`;
+
+const BackgroundCircle = styled.div<{
+  color: string;
+  size: string;
+  x: string;
+  y: string;
+  opacity?: string;
+}>`
+  position: absolute;
+  width: ${({ size }) => size};
+  height: ${({ size }) => size};
+  background-color: ${({ color }) => color};
+  border-radius: 50%;
+  filter: blur(20px);
+  transform: translate(${({ x }) => x}, ${({ y }) => y});
+  opacity: ${({ opacity }) => opacity || "1"};
+`;
+
+const SmallTitle = styled.div`
   font-size: 1rem;
   color: #333;
   display: inline-block;
@@ -39,10 +75,8 @@ const SmallTitle = styled.div<{ isVisible: boolean }>`
   border-radius: 30px;
   margin-bottom: 20px;
 
-  opacity: 0;
-  animation: ${({ isVisible }) => (isVisible ? fadeIn : "none")} 0.8s ease-out
-    forwards;
-  animation-delay: 0.3s;
+  position: relative;
+  z-index: 1; /* BackgroundCircle 뒤 배치 */
 `;
 
 const Title = styled.h2<{ isVisible: boolean }>`
@@ -111,8 +145,22 @@ const TeamSection = () => {
 
   return (
     <Wrapper>
-      <Section ref={ref}>
-        <SmallTitle isVisible={isVisible}>Who are we?</SmallTitle>
+      <Container ref={ref}>
+        <SmallTitleGroup isVisible={isVisible}>
+          <SmallTitleBackground>
+            <BackgroundCircle
+              color="#EA1B83"
+              opacity="0.8"
+              size="40px"
+              x="-60px"
+              y="-30px"
+            />
+            <BackgroundCircle color="#EA1B83" size="40px" x="-20px" y="-30px" />
+            <BackgroundCircle color="#FFFCAF" size="40px" x="-20px" y="-30px" />
+            <BackgroundCircle color="#FFFCAF" size="40px" x="20px" y="-30px" />
+          </SmallTitleBackground>
+          <SmallTitle>Who are we?</SmallTitle>
+        </SmallTitleGroup>
         <Title isVisible={isVisible}>Artviewers</Title>
         <TeamContainer>
           {teamMembers.map((member, index) => (
@@ -131,7 +179,7 @@ const TeamSection = () => {
         >
           <Professor />
         </ProfessorPosition>
-      </Section>
+      </Container>
     </Wrapper>
   );
 };

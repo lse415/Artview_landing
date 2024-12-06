@@ -34,7 +34,7 @@ const Title = styled.h2<{ isVisible: boolean }>`
   animation-delay: 0.3s;
 `;
 
-const Section = styled.section`
+const Container = styled.div`
   padding: 80px 0;
   text-align: center;
   margin: 0 120px;
@@ -80,7 +80,7 @@ const FeatureSection = () => {
   return (
     <>
       <Wrapper>
-        <Section ref={ref}>
+        <Container ref={ref}>
           <Title isVisible={isVisible}>
             Main Features
             <span>주요기능</span>
@@ -94,7 +94,7 @@ const FeatureSection = () => {
               />
             ))}
           </CardContainer>
-        </Section>
+        </Container>
       </Wrapper>
       {selectedFeature && (
         <FeatureModal feature={selectedFeature} onClose={closeModal} />

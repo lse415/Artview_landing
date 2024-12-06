@@ -53,12 +53,14 @@ const StyledTitleLeft = styled(StyledTitle)`
   animation-delay: 0.5s; /* 서서히 나타나는 순서 설정 */
   top: 150px;
   left: 0px;
+  z-index: 1;
 `;
 
 const StyledTitleRight = styled(StyledTitle)`
   animation-delay: 1s; /* 두 번째로 나타남 */
   top: 385px;
   right: 50px;
+  z-index: 1;
 `;
 
 const ImageGroup = styled.div`
@@ -77,7 +79,7 @@ const StyledMockupLeft = styled.img`
   transform: translate(-5%, 10%);
   width: 300px;
   height: auto;
-  z-index: 1;
+  z-index: 2;
 `;
 
 const StyledMockupRight = styled.img`
@@ -87,6 +89,24 @@ const StyledMockupRight = styled.img`
   transform: translate(5%, -10%);
   width: 350px;
   height: auto;
+  z-index: 2;
+`;
+
+const BackgroundCircle = styled.div<{
+  color: string;
+  opacity?: string;
+  size: string;
+  x: string;
+  y: string;
+}>`
+  position: absolute;
+  width: ${({ size }) => size};
+  height: ${({ size }) => size};
+  background-color: ${({ color }) => color};
+  opacity: ${({ opacity }) => opacity || "1"};
+  border-radius: 50%;
+  filter: blur(100px);
+  transform: translate(${({ x }) => x}, ${({ y }) => y});
   z-index: 0;
 `;
 
@@ -98,6 +118,14 @@ const MainSection = () => (
         <ImageGroup>
           <StyledMockupLeft src={mockupLeft} alt="Mockup Left" />
           <StyledMockupRight src={mockupRight} alt="Mockup Right" />
+          <BackgroundCircle
+            color="#EA1B83"
+            opacity="0.5"
+            size="300px"
+            x="10%"
+            y="20%"
+          />
+          <BackgroundCircle color="#FFFCAF" size="250px" x="80%" y="90%" />
         </ImageGroup>
         <StyledTitleRight>view</StyledTitleRight>
       </ContentGroup>
