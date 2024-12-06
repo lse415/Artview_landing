@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Wrapper from "../Wrapper";
-import LogoIcon from "../../assets/icons/logo-bg.svg";
+// import LogoIcon from "../../assets/icons/logo-bg.svg";
 import artviewLetter from "../../assets/images/artview_letter_footer.svg";
 
 const FooterContainer = styled.footer`
@@ -16,37 +16,37 @@ const FooterContent = styled.div`
   margin: 0 120px;
 `;
 
-const LogoGroup = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-`;
+// const LogoGroup = styled.div`
+//   display: flex;
+//   align-items: center;
+//   gap: 10px;
+// `;
 
-const StyledLogoIcon = styled.img`
-  width: 50px;
-  height: auto;
-`;
+// const StyledLogoIcon = styled.img`
+//   width: 50px;
+//   height: auto;
+// `;
 
-const Title = styled.h1`
-  font-size: 1.8rem;
-  color: #fff;
-`;
+// const Title = styled.h1`
+//   font-size: 1.8rem;
+//   color: #fff;
+// `;
 
-const GithubLinkWrapper = styled.div`
-  display: flex;
-  justify-content: flex-start; /* 좌측 정렬 */
-  margin-top: 10px;
-`;
+// const GithubLinkWrapper = styled.div`
+//   display: flex;
+//   justify-content: flex-start; /* 좌측 정렬 */
+//   margin-top: 10px;
+// `;
 
-const GithubLink = styled.a`
-  font-size: 1rem;
-  color: #fff;
-  text-decoration: none;
+// const GithubLink = styled.a`
+//   font-size: 1rem;
+//   color: #fff;
+//   text-decoration: none;
 
-  &:hover {
-    text-decoration: underline;
-  }
-`;
+//   &:hover {
+//     text-decoration: underline;
+//   }
+// `;
 
 const ArtviewLetterWrapper = styled.div`
   width: 100%;
