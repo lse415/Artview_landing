@@ -12,6 +12,8 @@ const Section = styled.section`
   padding: 80px 0;
   text-align: center;
   position: relative;
+  border-radius: 0 0 50px 50px; /* 좌우 하단 모서리를 둥글게 */
+  overflow: hidden; /* 둥근 모서리 안에서 내용 잘리게 */
 `;
 
 const SmallTitle = styled.div`
