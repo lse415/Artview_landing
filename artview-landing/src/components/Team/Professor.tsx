@@ -1,11 +1,13 @@
 import styled from "styled-components";
+import Wrapper from "../Wrapper";
 
-const ProfessorWrapper = styled.div`
+const Container = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;
   gap: 20px;
   margin-top: 50px;
+  margin: 0 120px;
 `;
 
 const ProfessorTitle = styled.h3`
@@ -26,13 +28,15 @@ const ProfessorName = styled.p`
 `;
 
 const Professor = () => (
-  <ProfessorWrapper>
-    <ProfessorTitle>지도교수</ProfessorTitle>
-    <ProfessorContainer>
-      <ProfessorName>Prof. 고혜영</ProfessorName>
-      <ProfessorName>Prof. 이기한</ProfessorName>
-    </ProfessorContainer>
-  </ProfessorWrapper>
+  <Wrapper>
+    <Container>
+      <ProfessorTitle>지도교수</ProfessorTitle>
+      <ProfessorContainer>
+        <ProfessorName>Prof. 고혜영</ProfessorName>
+        <ProfessorName>Prof. 이기한</ProfessorName>
+      </ProfessorContainer>
+    </Container>
+  </Wrapper>
 );
 
 export default Professor;

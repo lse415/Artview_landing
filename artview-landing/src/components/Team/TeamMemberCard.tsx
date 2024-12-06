@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 interface TeamMemberProps {
   image: string;
@@ -6,15 +6,33 @@ interface TeamMemberProps {
   role: string;
   email: string;
   github?: string;
+  delay: number;
+  isVisible: boolean;
 }
 
-const CardContainer = styled.div`
+const slideUp = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+const CardContainer = styled.div<{ delay: number; isVisible: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   padding: 20px;
   border-radius: 15px;
+
+  opacity: 0;
+  animation: ${({ isVisible }) => (isVisible ? slideUp : "none")} 2s ease-out
+    forwards;
+  animation-delay: ${({ delay }) => delay}s;
 `;
 
 const MemberImage = styled.img`
@@ -69,8 +87,10 @@ const TeamMemberCard: React.FC<TeamMemberProps> = ({
   role,
   email,
   github,
+  delay,
+  isVisible,
 }) => (
-  <CardContainer>
+  <CardContainer delay={delay} isVisible={isVisible}>
     <MemberImage src={image} alt={`${name} photo`} />
     <MemberName>{name}</MemberName>
     <MemberRole>{role}</MemberRole>

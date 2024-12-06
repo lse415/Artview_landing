@@ -1,16 +1,23 @@
 import { useState } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Wrapper from "../Wrapper";
 import FeatureCard from "./FeatureCard";
 import FeatureModal from "./FeatureModal";
+import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 
-const Section = styled.section`
-  padding: 80px 0;
-  text-align: center;
-  margin: 0 120px;
+// 애니메이션
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 `;
 
-const Title = styled.h2`
+const Title = styled.h2<{ isVisible: boolean }>`
   font-size: 2.5rem;
   color: #333;
   margin-bottom: 20px;
@@ -20,16 +27,34 @@ const Title = styled.h2`
     font-size: 1.5rem;
     margin-top: 10px;
   }
+
+  opacity: 0;
+  animation: ${({ isVisible }) => (isVisible ? fadeIn : "none")} 0.8s ease-out
+    forwards;
+  animation-delay: 0.3s;
 `;
 
-const CardContainer = styled.div`
+const Section = styled.section`
+  padding: 80px 0;
+  text-align: center;
+  margin: 0 120px;
+`;
+
+const CardContainer = styled.div<{ isVisible: boolean }>`
   display: flex;
   justify-content: center;
   gap: 100px;
   margin-top: 50px;
+
+  opacity: 0;
+  animation: ${({ isVisible }) => (isVisible ? fadeIn : "none")} 0.8s ease-out
+    forwards;
+  animation-delay: 1s;
 `;
 
 const FeatureSection = () => {
+  const { ref, isVisible } = useIntersectionObserver();
+
   const [selectedFeature, setSelectedFeature] = useState<{
     title: string;
     description: string;
@@ -55,12 +80,12 @@ const FeatureSection = () => {
   return (
     <>
       <Wrapper>
-        <Section>
-          <Title>
+        <Section ref={ref}>
+          <Title isVisible={isVisible}>
             Main Features
             <span>주요기능</span>
           </Title>
-          <CardContainer>
+          <CardContainer isVisible={isVisible}>
             {features.map((feature, index) => (
               <FeatureCard
                 key={index}

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import PointItem from "./PointItem";
 import Wrapper from "../Wrapper";
+import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 
 const ItemsContainer = styled.div`
   width: 100%;
@@ -19,6 +20,8 @@ const Section = styled.section`
 `;
 
 const PointSection = () => {
+  const { ref, isVisible } = useIntersectionObserver();
+
   const points = [
     {
       keywordText: "잊기 전에",
@@ -35,7 +38,7 @@ const PointSection = () => {
   ];
 
   return (
-    <Section>
+    <Section ref={ref}>
       <Wrapper>
         <ItemsContainer>
           {points.map((point, index) => (
@@ -43,6 +46,8 @@ const PointSection = () => {
               key={index}
               keywordText={point.keywordText}
               explanationText={point.explanationText}
+              delay={index * 0.8}
+              isVisible={isVisible}
             />
           ))}
         </ItemsContainer>

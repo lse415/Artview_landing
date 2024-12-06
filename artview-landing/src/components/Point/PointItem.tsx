@@ -1,16 +1,34 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 interface PointItemProps {
   keywordText: string;
   explanationText: string;
+  delay: number;
+  isVisible: boolean;
 }
 
-const PointContainer = styled.div`
+const slideInLeft = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+const PointContainer = styled.div<{ delay: number; isVisible: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   margin-bottom: 30px;
+
+  opacity: 0;
+  animation: ${({ isVisible }) => (isVisible ? slideInLeft : "none")} 2.4s
+    ease-out forwards;
+  animation-delay: ${({ delay }) => delay}s;
 `;
 
 const Dot = styled.div`
@@ -37,8 +55,10 @@ const Explanation = styled.p`
 const PointItem: React.FC<PointItemProps> = ({
   keywordText,
   explanationText,
+  delay,
+  isVisible,
 }) => (
-  <PointContainer>
+  <PointContainer delay={delay} isVisible={isVisible}>
     <Dot />
     <Keyword>{keywordText}</Keyword>
     <Explanation>{explanationText}</Explanation>
