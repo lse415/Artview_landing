@@ -62,7 +62,7 @@ Error generating stack: `+o.message+`
   @media (max-width: 768px) {
     padding: 0 10px;
   }
-`,If="/assets/logo-bg-S2ZuzgAR.svg",B0=$.header`
+`,If="/Artview_landing/assets/logo-bg-S2ZuzgAR.svg",B0=$.header`
   width: 100%;
   display: flex;
   align-items: center;
@@ -86,7 +86,7 @@ Error generating stack: `+o.message+`
 `,Y0=$.div`
   font-size: 1rem;
   color: #333;
-`,X0=()=>P.jsx(B0,{children:P.jsx(or,{children:P.jsxs(W0,{children:[P.jsxs(Q0,{children:[P.jsx(G0,{src:If,alt:"Logo Icon"}),P.jsx(K0,{children:"Artview"})]}),P.jsx(Y0,{children:"2024 SWU Digital Media Design and Application"})]})})}),Z0="/assets/mockup-left-home-DNbucILH.svg",J0="/assets/mockup-right-community-BkC0nlbH.svg",q0=$.section`
+`,X0=()=>P.jsx(B0,{children:P.jsx(or,{children:P.jsxs(W0,{children:[P.jsxs(Q0,{children:[P.jsx(G0,{src:If,alt:"Logo Icon"}),P.jsx(K0,{children:"Artview"})]}),P.jsx(Y0,{children:"2024 SWU Digital Media Design and Application"})]})})}),Z0="/Artview_landing/assets/mockup-left-home-DNbucILH.svg",J0="/Artview_landing/assets/mockup-right-community-BkC0nlbH.svg",q0=$.section`
   position: relative;
   width: 100%;
   height: 100vh;
@@ -308,7 +308,7 @@ Error generating stack: `+o.message+`
   font-size: 1rem;
   color: #333;
   margin-bottom: 10px;
-`,Vh=()=>P.jsxs($h,{children:[P.jsx(Uh,{children:"지도교수"}),P.jsxs(Hh,{children:[P.jsx(of,{children:"Prof. 고혜영"}),P.jsx(of,{children:"Prof. 이기한"})]})]}),Bh="/assets/fe_lse--BlPE1w2.svg",Wh="/assets/be_lmj-DvkhUGCz.svg",Qh="/assets/design_pkj-Cb32WO2T.svg",Gh="/assets/design_sjw-Dm5oS98m.svg",Kh=$.section`
+`,Vh=()=>P.jsxs($h,{children:[P.jsx(Uh,{children:"지도교수"}),P.jsxs(Hh,{children:[P.jsx(of,{children:"Prof. 고혜영"}),P.jsx(of,{children:"Prof. 이기한"})]})]}),Bh="/Artview_landing/assets/fe_lse--BlPE1w2.svg",Wh="/Artview_landing/assets/be_lmj-DvkhUGCz.svg",Qh="/Artview_landing/assets/design_pkj-Cb32WO2T.svg",Gh="/Artview_landing/assets/design_sjw-Dm5oS98m.svg",Kh=$.section`
   padding: 80px 0;
   text-align: center;
   position: relative;
