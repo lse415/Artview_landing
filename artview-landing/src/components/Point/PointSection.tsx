@@ -12,7 +12,7 @@ const ItemsContainer = styled.div`
 `;
 
 const Section = styled.section`
-  padding: 40px 0;
+  padding: 80px 0;
   display: flex;
   justify-content: center;
   align-items: center;

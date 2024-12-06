@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Wrapper from "../Wrapper";
+import LogoIcon from "../../assets/icons/logo-bg.svg";
 
 const HeaderContainer = styled.header`
   width: 100%;
@@ -16,8 +17,19 @@ const HeaderContent = styled.div`
   padding: 40px 0;
 `;
 
+const LogoGroup = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+`;
+
+const StyledLogoIcon = styled.img`
+  width: 60px;
+  height: auto;
+`;
+
 const Logo = styled.h1`
-  font-size: 2rem;
+  font-size: 2.3rem;
   color: #333;
 `;
 
@@ -30,7 +42,10 @@ const Header = () => (
   <HeaderContainer>
     <Wrapper>
       <HeaderContent>
-        <Logo>Artview</Logo>
+        <LogoGroup>
+          <StyledLogoIcon src={LogoIcon} alt="Logo Icon" />
+          <Logo>Artview</Logo>
+        </LogoGroup>
         <Swu>2024 SWU Digital Media Design and Application</Swu>
       </HeaderContent>
     </Wrapper>
