@@ -3,6 +3,7 @@ import LogoIcon from "../../assets/icons/logo-bg.svg";
 
 interface FeatureCardProps {
   title: string;
+  onClick: () => void;
 }
 
 const CardContainer = styled.div`
@@ -16,6 +17,12 @@ const CardContainer = styled.div`
   background-color: #f9f9f9;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 `;
 
 const CardIcon = styled.img`
@@ -29,8 +36,8 @@ const CardTitle = styled.h3`
   color: #333;
 `;
 
-const FeatureCard: React.FC<FeatureCardProps> = ({ title }) => (
-  <CardContainer>
+const FeatureCard: React.FC<FeatureCardProps> = ({ title, onClick }) => (
+  <CardContainer onClick={onClick}>
     <CardIcon src={LogoIcon} alt={`${title} Icon`} />
     <CardTitle>{title}</CardTitle>
   </CardContainer>
