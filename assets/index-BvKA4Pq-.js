@@ -192,7 +192,8 @@ Error generating stack: `+l.message+`
   animation-delay: 1.5s;
 
   ${({theme:i})=>i.media.mobile} {
-    width: 200px;
+    width: 100%;
+    max-width: 100%;
     margin-top: 10px;
   }
 `,gf=O.img`
@@ -205,7 +206,7 @@ Error generating stack: `+l.message+`
   z-index: 1;
 
   ${({theme:i})=>i.media.mobile} {
-    width: 150px;
+    transform: translate(-10%, 10%);
   }
 `,yf=O.img`
   position: absolute;
@@ -216,7 +217,7 @@ Error generating stack: `+l.message+`
   height: auto;
   z-index: 2;
   ${({theme:i})=>i.media.mobile} {
-    width: 175px;
+    transform: translate(5%, -10%); /* 모바일에서 중심으로 조정 */
   }
 `,yh=()=>{const i=window.innerWidth<=480;return C.jsx(dh,{children:C.jsxs(jn,{children:[i&&C.jsxs(hh,{children:[C.jsx(gh,{children:"Artview"}),C.jsxs(vf,{children:[C.jsx(gf,{src:hf,alt:"Mockup Left"}),C.jsx(yf,{src:mf,alt:"Mockup Right"}),C.jsx(pl,{color:"#EA1B83",opacity:"0.5",size:"300px",x:"10%",y:"20%"}),C.jsx(pl,{color:"#FFFCAF",size:"250px",x:"80%",y:"90%"})]})]}),!i&&C.jsxs(ph,{children:[C.jsx(mh,{children:"Art"}),C.jsxs(vf,{children:[C.jsx(gf,{src:hf,alt:"Mockup Left"}),C.jsx(yf,{src:mf,alt:"Mockup Right"}),C.jsx(pl,{color:"#EA1B83",opacity:"0.5",size:"300px",x:"10%",y:"20%"}),C.jsx(pl,{color:"#FFFCAF",size:"250px",x:"80%",y:"90%"})]}),C.jsx(vh,{children:"view"})]})]})})},wh=ar`
   from {
