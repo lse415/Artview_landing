@@ -122,7 +122,7 @@ const ImageGroup = styled.div`
   height: auto;
   opacity: 0;
   animation: ${slideUp} 1.5s ease-out forwards;
-  animation-delay: 1.5s;
+  animation-delay: 1.3s;
 
   ${({ theme }) => theme.media.mobile} {
     max-width: 100%;
