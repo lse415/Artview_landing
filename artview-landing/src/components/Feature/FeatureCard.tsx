@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import LogoIcon from "../../assets/icons/logo-bg.svg";
+import media from "../../styles/media";
 
 interface FeatureCardProps {
   title: string;
@@ -10,7 +11,7 @@ const CardContainer = styled.div`
   width: 250px;
   height: 250px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   border-radius: 20px;
@@ -23,17 +24,30 @@ const CardContainer = styled.div`
   &:hover {
     transform: scale(1.05);
   }
+
+  ${media.mobile} {
+    width: 100px;
+    height: 100px;
+  }
 `;
 
 const CardIcon = styled.img`
   width: 50px;
   height: 50px;
   margin-bottom: 15px;
+
+  ${media.mobile} {
+    display: none;
+  }
 `;
 
 const CardTitle = styled.h3`
   font-size: 1.2rem;
   color: #333;
+
+  ${media.mobile} {
+    font-size: ${({ theme }) => theme.fonts.small};
+  }
 `;
 
 const FeatureCard: React.FC<FeatureCardProps> = ({ title, onClick }) => (

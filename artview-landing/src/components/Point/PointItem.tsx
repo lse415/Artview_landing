@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+import media from "../../styles/media";
 
 interface PointItemProps {
   keywordText: string;
@@ -41,10 +42,11 @@ const PointContainer = styled.div<{ delay: number; isVisible: boolean }>`
     ease-out forwards;
   animation-delay: ${({ delay }) => delay}s;
 
-  ${({ theme }) => theme.media.mobile} {
+  ${media.mobile} {
     animation: ${({ isVisible }) => (isVisible ? slideInDown : "none")} 1.5s
       ease-out forwards;
-    margin-bottom: 20px; /* 모바일에서 간격 조정 */
+    animation-delay: ${({ delay }) => delay}s;
+    margin-bottom: 20px;
   }
 `;
 

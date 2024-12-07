@@ -5,6 +5,9 @@ const theme = {
   },
   fonts: {
     small: "1rem",
+    title: "2.5rem",
+    title_small: "1.5rem",
+    title_mobile: "3.8rem",
   },
   media: {
     desktop: "1024px",

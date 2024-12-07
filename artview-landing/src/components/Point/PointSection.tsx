@@ -2,6 +2,7 @@ import styled from "styled-components";
 import PointItem from "./PointItem";
 import Wrapper from "../Wrapper";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
+import media from "../../styles/media";
 
 const ItemsContainer = styled.div`
   width: 100%;
@@ -11,20 +12,16 @@ const ItemsContainer = styled.div`
   align-items: center;
   gap: 50px;
 
-  ${({ theme }) => theme.media.mobile} {
+  ${media.mobile} {
     flex-direction: column;
   }
 `;
 
-const Section = styled.section`
+const Container = styled.section`
   padding: 80px 0;
   display: flex;
   justify-content: center;
   align-items: center;
-
-  ${({ theme }) => theme.media.mobile} {
-    padding: 25px 0 40px 0;
-  }
 `;
 
 const PointSection = () => {
@@ -46,7 +43,7 @@ const PointSection = () => {
   ];
 
   return (
-    <Section ref={ref}>
+    <Container ref={ref}>
       <Wrapper>
         <ItemsContainer>
           {points.map((point, index) => (
@@ -60,7 +57,7 @@ const PointSection = () => {
           ))}
         </ItemsContainer>
       </Wrapper>
-    </Section>
+    </Container>
   );
 };
 
