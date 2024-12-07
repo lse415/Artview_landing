@@ -190,7 +190,7 @@ Error generating stack: `+l.message+`
   height: auto;
   opacity: 0;
   animation: ${fh} 1.5s ease-out forwards;
-  animation-delay: 1.5s;
+  animation-delay: 1.3s;
 
   ${({theme:i})=>i.media.mobile} {
     max-width: 100%;
