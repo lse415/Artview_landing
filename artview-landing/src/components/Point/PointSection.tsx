@@ -10,6 +10,10 @@ const ItemsContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 50px;
+
+  ${({ theme }) => theme.media.mobile} {
+    flex-direction: column;
+  }
 `;
 
 const Section = styled.section`
@@ -17,6 +21,10 @@ const Section = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  ${({ theme }) => theme.media.mobile} {
+    padding: 25px 0 40px 0;
+  }
 `;
 
 const PointSection = () => {

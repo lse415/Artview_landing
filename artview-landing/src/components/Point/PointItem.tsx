@@ -18,6 +18,17 @@ const slideInLeft = keyframes`
   }
 `;
 
+const slideInDown = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
 const PointContainer = styled.div<{ delay: number; isVisible: boolean }>`
   display: flex;
   flex-direction: column;
@@ -29,6 +40,12 @@ const PointContainer = styled.div<{ delay: number; isVisible: boolean }>`
   animation: ${({ isVisible }) => (isVisible ? slideInLeft : "none")} 2.4s
     ease-out forwards;
   animation-delay: ${({ delay }) => delay}s;
+
+  ${({ theme }) => theme.media.mobile} {
+    animation: ${({ isVisible }) => (isVisible ? slideInDown : "none")} 1.5s
+      ease-out forwards;
+    margin-bottom: 20px; /* 모바일에서 간격 조정 */
+  }
 `;
 
 const Dot = styled.div`
