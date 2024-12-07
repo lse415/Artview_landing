@@ -121,6 +121,7 @@ Error generating stack: `+l.message+`
   position: relative;
   width: 100%;
   height: 100vh;
+  overflow-x: hidden;
 `,ph=O.div`
   display: flex;
   justify-content: center;
@@ -192,9 +193,8 @@ Error generating stack: `+l.message+`
   animation-delay: 1.5s;
 
   ${({theme:i})=>i.media.mobile} {
-    width: 100%;
     max-width: 100%;
-    margin-top: 10px;
+    margin: 10px auto 0;
   }
 `,gf=O.img`
   position: absolute;
@@ -219,7 +219,7 @@ Error generating stack: `+l.message+`
   ${({theme:i})=>i.media.mobile} {
     transform: translate(5%, -10%); /* 모바일에서 중심으로 조정 */
   }
-`,yh=()=>{const i=window.innerWidth<=480;return C.jsx(dh,{children:C.jsxs(jn,{children:[i&&C.jsxs(hh,{children:[C.jsx(gh,{children:"Artview"}),C.jsxs(vf,{children:[C.jsx(gf,{src:hf,alt:"Mockup Left"}),C.jsx(yf,{src:mf,alt:"Mockup Right"}),C.jsx(pl,{color:"#EA1B83",opacity:"0.5",size:"300px",x:"10%",y:"20%"}),C.jsx(pl,{color:"#FFFCAF",size:"250px",x:"80%",y:"90%"})]})]}),!i&&C.jsxs(ph,{children:[C.jsx(mh,{children:"Art"}),C.jsxs(vf,{children:[C.jsx(gf,{src:hf,alt:"Mockup Left"}),C.jsx(yf,{src:mf,alt:"Mockup Right"}),C.jsx(pl,{color:"#EA1B83",opacity:"0.5",size:"300px",x:"10%",y:"20%"}),C.jsx(pl,{color:"#FFFCAF",size:"250px",x:"80%",y:"90%"})]}),C.jsx(vh,{children:"view"})]})]})})},wh=ar`
+`,yh=()=>{const i=window.innerWidth<=480;return C.jsx(dh,{children:C.jsxs(jn,{children:[i&&C.jsxs(hh,{children:[C.jsx(gh,{children:"Artview"}),C.jsxs(vf,{children:[C.jsx(gf,{src:hf,alt:"Mockup Left"}),C.jsx(yf,{src:mf,alt:"Mockup Right"}),C.jsx(pl,{color:"#EA1B83",opacity:"0.5",size:"300px",x:"10%",y:"20%"}),C.jsx(pl,{color:"#FFFCAF",size:"250px",x:"80%",y:"90%"})]})]}),!i&&C.jsxs(ph,{children:[C.jsx(mh,{children:"Art"}),C.jsxs(vf,{children:[C.jsx(gf,{src:hf,alt:"Mockup Left"}),C.jsx(yf,{src:mf,alt:"Mockup Right"}),C.jsx(pl,{color:"#EA1B83",opacity:"0.5",size:"300px",x:"10%",y:"50%"}),C.jsx(pl,{color:"#FFFCAF",size:"250px",x:"80%",y:"90%"})]}),C.jsx(vh,{children:"view"})]})]})})},wh=ar`
   from {
     opacity: 0;
     transform: translateX(-50px);
