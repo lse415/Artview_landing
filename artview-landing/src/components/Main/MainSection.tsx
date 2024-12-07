@@ -1,7 +1,8 @@
 import styled, { keyframes } from "styled-components";
 import Wrapper from "../Wrapper";
-import mockupLeft from "../../assets/images/mockup-left-home.svg";
-import mockupRight from "../../assets/images/mockup-right-community.svg";
+import MockupLeft from "../../assets/images/mockup-left-home.svg?react";
+import MockupRight from "../../assets/images/mockup-right-community.svg?react";
+import media from "../../styles/media";
 
 const fadeIn = keyframes`
   from {
@@ -40,7 +41,7 @@ const ContentGroup = styled.div`
   position: relative;
   margin-top: -50px;
 
-  ${({ theme }) => theme.media.mobile} {
+  ${media.mobile} {
     display: none;
   }
 `;
@@ -58,7 +59,7 @@ const StyledTitle = styled.h1`
   opacity: 0;
   animation: ${fadeIn} 1.5s ease-out forwards;
 
-  ${({ theme }) => theme.media.mobile} {
+  ${media.mobile} {
     display: none;
   }
 `;
@@ -69,7 +70,7 @@ const StyledTitleLeft = styled(StyledTitle)`
   left: 0px;
   z-index: 1;
 
-  ${({ theme }) => theme.media.mobile} {
+  ${media.mobile} {
     display: none;
   }
 `;
@@ -80,7 +81,7 @@ const StyledTitleRight = styled(StyledTitle)`
   right: 50px;
   z-index: 1;
 
-  ${({ theme }) => theme.media.mobile} {
+  ${media.mobile} {
     display: none;
   }
 `;
@@ -93,7 +94,7 @@ const StyledTitleMobile = styled.h1`
   opacity: 0;
   animation: ${fadeIn} 1.5s ease-in-out forwards;
   margin-top: 5%;
-  ${({ theme }) => theme.media.mobile} {
+  ${media.mobile} {
     font-size: 4rem;
   }
 `;
@@ -124,13 +125,13 @@ const ImageGroup = styled.div`
   animation: ${slideUp} 1.5s ease-out forwards;
   animation-delay: 1.3s;
 
-  ${({ theme }) => theme.media.mobile} {
+  ${media.mobile} {
     max-width: 100%;
     margin: 10px auto 0;
   }
 `;
 
-const StyledMockupLeft = styled.img`
+const StyledMockupLeft = styled(MockupLeft)`
   position: absolute;
   top: 0;
   left: 0;
@@ -139,12 +140,12 @@ const StyledMockupLeft = styled.img`
   height: auto;
   z-index: 2;
 
-  ${({ theme }) => theme.media.mobile} {
+  ${media.mobile} {
     transform: translate(-10%, 10%);
   }
 `;
 
-const StyledMockupRight = styled.img`
+const StyledMockupRight = styled(MockupRight)`
   position: absolute;
   top: 0;
   right: 0;
@@ -152,7 +153,7 @@ const StyledMockupRight = styled.img`
   width: 350px;
   height: auto;
   z-index: 1;
-  ${({ theme }) => theme.media.mobile} {
+  ${media.mobile} {
     transform: translate(5%, -10%); /* 모바일에서 중심으로 조정 */
   }
 `;
@@ -167,8 +168,8 @@ const MainSection = () => {
           <ContentGroupMobile>
             <StyledTitleMobile>Artview</StyledTitleMobile>
             <ImageGroup>
-              <StyledMockupLeft src={mockupLeft} alt="Mockup Left" />
-              <StyledMockupRight src={mockupRight} alt="Mockup Right" />
+              <StyledMockupLeft />
+              <StyledMockupRight />
               <BackgroundCircle
                 color="#EA1B83"
                 opacity="0.5"
@@ -186,8 +187,8 @@ const MainSection = () => {
           <ContentGroup>
             <StyledTitleLeft>Art</StyledTitleLeft>
             <ImageGroup>
-              <StyledMockupLeft src={mockupLeft} alt="Mockup Left" />
-              <StyledMockupRight src={mockupRight} alt="Mockup Right" />
+              <StyledMockupLeft />
+              <StyledMockupRight />
               <BackgroundCircle
                 color="#EA1B83"
                 opacity="0.5"
