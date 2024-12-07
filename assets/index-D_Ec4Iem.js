@@ -386,7 +386,6 @@ Error generating stack: `+l.message+`
 
   ${Lt.mobile} {
     margin: 0;
-    padding: 40px 0;
   }
 `,Vm=O.h2`
   font-size: ${({theme:i})=>i.fonts.title};
