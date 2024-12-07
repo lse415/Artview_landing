@@ -78,7 +78,7 @@ Error generating stack: `+l.message+`
     flex-direction: column;
     align-items: flex-start;
     margin: 0;
-    padding: 10px 0;
+    padding: 0;
   }
 `,eh=M.div`
   display: flex;
