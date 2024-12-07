@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Wrapper from "../Wrapper";
 import LogoIcon from "../../assets/icons/logo-bg.svg";
+import media from "../../styles/media";
 
 const HeaderContainer = styled.header`
   width: 100%;
@@ -15,6 +16,13 @@ const HeaderContent = styled.div`
   align-items: center;
   margin: 0 120px;
   padding: 40px 0;
+
+  ${media.mobile} {
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0;
+    padding: 0;
+  }
 `;
 
 const LogoGroup = styled.div`
@@ -30,12 +38,18 @@ const StyledLogoIcon = styled.img`
 
 const Logo = styled.h1`
   font-size: 2.3rem;
-  color: #333;
+  color: ${({ theme }) => theme.colors.primary};
 `;
 
 const Swu = styled.div`
-  font-size: 1rem;
-  color: #333;
+  font-size: ${({ theme }) => theme.fonts.small};
+  color: ${({ theme }) => theme.colors.primary};
+
+  ${media.mobile} {
+    text-align: left;
+    margin-top: 5px;
+    margin-left: 10px;
+  }
 `;
 
 const Header = () => (
