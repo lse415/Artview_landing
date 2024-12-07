@@ -78,6 +78,7 @@ Error generating stack: `+l.message+`
     flex-direction: column;
     align-items: flex-start;
     margin: 0;
+    padding: 10px 0;
   }
 `,eh=M.div`
   display: flex;
@@ -95,7 +96,7 @@ Error generating stack: `+l.message+`
 
   ${Hf.mobile} {
     text-align: left;
-    margin-top: 10px;
+    margin-top: 5px;
     margin-left: 10px;
   }
 `,oh=()=>_.jsx(q0,{children:_.jsx(jn,{children:_.jsxs(b0,{children:[_.jsxs(eh,{children:[_.jsx(th,{src:Uf,alt:"Logo Icon"}),_.jsx(nh,{children:"Artview"})]}),_.jsx(rh,{children:"2024 SWU Digital Media Design and Application"})]})})}),lh="/Artview_landing/assets/mockup-left-home-DNbucILH.svg",ih="/Artview_landing/assets/mockup-right-community-BkC0nlbH.svg",uh=ar`
