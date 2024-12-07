@@ -511,6 +511,7 @@ Error generating stack: `+l.message+`
   position: relative;
   border-radius: 0 0 50px 50px;
   overflow: hidden;
+  z-index: 0;
 `,ch=O.div`
   position: relative;
   z-index: 1;
@@ -526,7 +527,7 @@ Error generating stack: `+l.message+`
   top: 50%; /* SmallTitle 중심에 배치 */
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 0;
+  z-index: 1;
 `,hl=O.div`
   position: absolute;
   width: ${({size:i})=>i};
