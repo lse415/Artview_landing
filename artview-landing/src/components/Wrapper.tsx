@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Wrapper = styled.section`
+const Wrapper = styled.div`
   width: 100%;
   padding: 0 40px;
   box-sizing: border-box;
