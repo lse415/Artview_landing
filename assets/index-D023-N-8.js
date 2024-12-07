@@ -203,7 +203,7 @@ Error generating stack: `+l.message+`
   transform: translate(-5%, 10%);
   width: 300px;
   height: auto;
-  z-index: 1;
+  z-index: 2;
 
   ${({theme:i})=>i.media.mobile} {
     transform: translate(-10%, 10%);
@@ -215,7 +215,7 @@ Error generating stack: `+l.message+`
   transform: translate(5%, -10%);
   width: 350px;
   height: auto;
-  z-index: 2;
+  z-index: 1;
   ${({theme:i})=>i.media.mobile} {
     transform: translate(5%, -10%); /* 모바일에서 중심으로 조정 */
   }
