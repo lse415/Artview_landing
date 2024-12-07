@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Wrapper from "../Wrapper";
-import LogoIcon from "../../assets/icons/logo-bg.svg";
+import LogoIcon from "../../assets/icons/logo-bg.svg?react";
 import media from "../../styles/media";
 
 const HeaderContainer = styled.header`
@@ -29,11 +29,9 @@ const LogoGroup = styled.div`
   display: flex;
   align-items: center;
   gap: 5px;
-`;
-
-const StyledLogoIcon = styled.img`
-  width: 60px;
-  height: auto;
+  ${media.mobile} {
+    padding: 10px;
+  }
 `;
 
 const Logo = styled.h1`
@@ -57,7 +55,7 @@ const Header = () => (
     <Wrapper>
       <HeaderContent>
         <LogoGroup>
-          <StyledLogoIcon src={LogoIcon} alt="Logo Icon" />
+          <LogoIcon width={40} height={40} />
           <Logo>Artview</Logo>
         </LogoGroup>
         <Swu>2024 SWU Digital Media Design and Application</Swu>

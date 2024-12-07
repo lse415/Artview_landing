@@ -1,13 +1,19 @@
 import styled from "styled-components";
 import Wrapper from "../Wrapper";
+import media from "../../styles/media";
 
 const Container = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;
   gap: 20px;
-  margin-top: 50px;
+  margin-top: 50%;
   margin: 0 120px;
+
+  ${media.tablet}, ${media.mobile} {
+    margin: 0;
+    margin-top: 50%;
+  }
 `;
 
 const ProfessorTitle = styled.h3`

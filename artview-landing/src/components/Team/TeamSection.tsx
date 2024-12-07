@@ -120,7 +120,7 @@ const MemberWrapper = styled.div<{ offset?: boolean; reverse?: boolean }>`
 `;
 
 const ProfessorPosition = styled.div<{ delay: number }>`
-  margin-top: 50px;
+  margin-top: 120px;
   opacity: 0;
   animation: ${fadeIn} 0.8s ease-out forwards;
   animation-delay: ${({ delay }) => delay}s;
