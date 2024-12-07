@@ -8,6 +8,7 @@ import beLmjIcon from "../../assets/images/artviewers/be_lmj.svg";
 import designPkjIcon from "../../assets/images/artviewers/design_pkj.svg";
 import designSjwIcon from "../../assets/images/artviewers/design_sjw.svg";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
+import media from "../../styles/media";
 
 const fadeIn = keyframes`
   from {
@@ -24,14 +25,16 @@ const Container = styled.div`
   padding: 80px 0;
   text-align: center;
   position: relative;
-  border-radius: 0 0 50px 50px; /* 좌우 하단 모서리를 둥글게 */
-  overflow: hidden; /* 둥근 모서리 안에서 내용 잘리게 */
+  border-radius: 0 0 50px 50px;
+  overflow: hidden;
+  z-index: 0;
 `;
 
 const SmallTitleGroup = styled.div<{ isVisible: boolean }>`
   position: relative;
   z-index: 1;
   display: inline-block;
+  overflow: visible;
 
   opacity: 0;
   animation: ${({ isVisible }) => (isVisible ? fadeIn : "none")} 0.8s ease-out
@@ -44,7 +47,7 @@ const SmallTitleBackground = styled.div`
   top: 50%; /* SmallTitle 중심에 배치 */
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 0;
+  z-index: 1;
 `;
 
 const BackgroundCircle = styled.div<{
@@ -95,13 +98,25 @@ const TeamContainer = styled.div`
   justify-content: center;
   align-items: flex-start;
   gap: 50px;
+
+  ${media.mobile} {
+    flex-direction: column;
+    // align-items: center;
+  }
 `;
 
-const MemberWrapper = styled.div<{ offset?: boolean }>`
+const MemberWrapper = styled.div<{ offset?: boolean; reverse?: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: ${({ offset }) => (offset ? "50px" : "0")};
+
+  ${media.mobile} {
+    align-items: ${({ reverse }) => (reverse ? "flex-end" : "flex-start")};
+    justify-content: ${({ reverse }) => (reverse ? "flex-end" : "flex-start")};
+    width: 100%;
+    margin-top: 0;
+  }
 `;
 
 const ProfessorPosition = styled.div<{ delay: number }>`
@@ -164,11 +179,16 @@ const TeamSection = () => {
         <Title isVisible={isVisible}>Artviewers</Title>
         <TeamContainer>
           {teamMembers.map((member, index) => (
-            <MemberWrapper key={index} offset={index % 2 === 1}>
+            <MemberWrapper
+              key={index}
+              offset={index % 2 === 1}
+              reverse={index % 2 === 1}
+            >
               <TeamMemberCard
                 {...member}
                 delay={isVisible ? 1.3 + index * 0.5 : 0}
                 isVisible={isVisible}
+                reverse={index % 2 === 1}
               />
             </MemberWrapper>
           ))}

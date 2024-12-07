@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+import media from "../../styles/media";
 
 interface TeamMemberProps {
   image: string;
@@ -8,6 +9,7 @@ interface TeamMemberProps {
   github?: string;
   delay: number;
   isVisible: boolean;
+  reverse: boolean;
 }
 
 const slideUp = keyframes`
@@ -21,7 +23,33 @@ const slideUp = keyframes`
   }
 `;
 
-const CardContainer = styled.div<{ delay: number; isVisible: boolean }>`
+const slideInLeft = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+const slideInRight = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+const CardContainer = styled.div<{
+  delay: number;
+  isVisible: boolean;
+  reverse?: boolean;
+}>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,29 +61,74 @@ const CardContainer = styled.div<{ delay: number; isVisible: boolean }>`
   animation: ${({ isVisible }) => (isVisible ? slideUp : "none")} 2s ease-out
     forwards;
   animation-delay: ${({ delay }) => delay}s;
+
+  ${media.mobile} {
+    flex-direction: ${({ reverse }) => (reverse ? "row-reverse" : "row")};
+    align-items: center;
+    text-align: ${({ reverse }) => (reverse ? "right" : "left")};
+    padding: 10px;
+
+    animation: ${({ isVisible, reverse }) =>
+        isVisible ? (reverse ? slideInRight : slideInLeft) : "none"}
+      2s ease-out forwards;
+    animation-delay: ${({ delay }) => delay}s;
+  }
 `;
 
-const MemberImage = styled.img`
+const MemberImage = styled.img<{ isReverse?: boolean }>`
   width: 200px;
   height: 200px;
   margin-bottom: 15px;
   object-fit: cover;
+
+  ${media.mobile} {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 0;
+    ${({ isReverse }) =>
+      isReverse
+        ? `
+            margin-left: 15px;
+          `
+        : `
+            margin-right: 15px;
+          `}
+  }
+`;
+
+const MemberDetails = styled.div`
+  ${media.mobile} {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
 `;
 
 const MemberName = styled.h3`
   font-size: 1rem;
   color: #333;
   margin-bottom: 5px;
+
+  ${media.mobile} {
+    margin-bottom: 0;
+  }
 `;
 
 const MemberRole = styled.p`
   font-size: 1rem;
   color: #333;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
+
+  ${media.mobile} {
+    margin-bottom: 0;
+  }
 `;
 
-const ContactInfo = styled.div`
+const ContactInfo = styled.div<{ isReverse?: boolean }>`
   text-align: left;
+  ${media.mobile} {
+    text-align: ${({ isReverse }) => (isReverse ? "right" : "left")};
+  }
 `;
 
 const MemberEmail = styled.a`
@@ -68,9 +141,13 @@ const MemberEmail = styled.a`
   &:hover {
     text-decoration: underline;
   }
+
+  ${media.mobile} {
+    margin-bottom: 0;
+  }
 `;
 
-const MemberGithub = styled.a`
+const MemberGithub = styled.a<{ isReverse?: boolean }>`
   display: block;
   font-size: 0.9rem;
   color: #666;
@@ -81,7 +158,7 @@ const MemberGithub = styled.a`
   }
 `;
 
-const TeamMemberCard: React.FC<TeamMemberProps> = ({
+const TeamMemberCard: React.FC<TeamMemberProps & { reverse?: boolean }> = ({
   image,
   name,
   role,
@@ -89,19 +166,22 @@ const TeamMemberCard: React.FC<TeamMemberProps> = ({
   github,
   delay,
   isVisible,
+  reverse = false,
 }) => (
-  <CardContainer delay={delay} isVisible={isVisible}>
-    <MemberImage src={image} alt={`${name} photo`} />
-    <MemberName>{name}</MemberName>
-    <MemberRole>{role}</MemberRole>
-    <ContactInfo>
-      <MemberEmail href={`mailto:${email}`}>{email}</MemberEmail>
-      {github && (
-        <MemberGithub href={github} target="_blank" rel="noopener noreferrer">
-          ↗ GitHub
-        </MemberGithub>
-      )}
-    </ContactInfo>
+  <CardContainer delay={delay} isVisible={isVisible} reverse={reverse}>
+    <MemberImage src={image} alt={`${name} photo`} isReverse={reverse} />
+    <MemberDetails>
+      <MemberName>{name}</MemberName>
+      <MemberRole>{role}</MemberRole>
+      <ContactInfo isReverse={reverse}>
+        <MemberEmail href={`mailto:${email}`}>{email}</MemberEmail>
+        {github && (
+          <MemberGithub href={github} target="_blank" rel="noopener noreferrer">
+            ↗ GitHub
+          </MemberGithub>
+        )}
+      </ContactInfo>
+    </MemberDetails>
   </CardContainer>
 );
 
