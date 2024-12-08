@@ -5,6 +5,7 @@ import FeatureCard from "./FeatureCard";
 import FeatureModal from "./FeatureModal";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 import media from "../../styles/media";
+import { AiOutlineForm, AiOutlineComment, AiOutlineBulb } from "react-icons/ai";
 
 const fadeIn = keyframes`
   from {
@@ -50,10 +51,10 @@ const Title = styled.h2<{ isVisible: boolean }>`
   }
 `;
 
-const CardContainer = styled.div<{ isVisible: boolean }>`
+const CardsContainer = styled.div<{ isVisible: boolean }>`
   display: flex;
   justify-content: center;
-  gap: 100px;
+  gap: 60px;
   margin-top: 50px;
 
   opacity: 0;
@@ -75,20 +76,43 @@ const FeatureSection = () => {
     description: string;
   } | null>(null);
 
-  const features = [
-    {
-      title: "기록",
-      description: "실시간으로 기록을 남기고 공유할 수 있습니다.",
-    },
-    {
-      title: "소통",
-      description: "사용자들과 소통하며 감상을 나눌 수 있습니다.",
-    },
-    {
-      title: "정보",
-      description: "전시회 정보를 확인하고 추천받을 수 있습니다.",
-    },
-  ];
+  const isMobile = window.innerWidth <= 480;
+
+  const features = isMobile
+    ? [
+        {
+          title: "기록",
+          description: "전시 관람의 순간을 기록합니다.",
+          icon: <AiOutlineForm />,
+        },
+        {
+          title: "소통",
+          description: "전시 관람 경험을 나누며 소통합니다.",
+          icon: <AiOutlineComment />,
+        },
+        {
+          title: "정보",
+          description: "진행 중인 전시회 정보를 제공합니다.",
+          icon: <AiOutlineBulb />,
+        },
+      ]
+    : [
+        {
+          title: "실시간 기록",
+          description: "전시 관람의 순간을 기록합니다.",
+          icon: <AiOutlineForm />,
+        },
+        {
+          title: "감상 공유",
+          description: "전시 관람 경험을 나누며 소통합니다.",
+          icon: <AiOutlineComment />,
+        },
+        {
+          title: "전시 정보 제공",
+          description: "진행 중인 전시회 정보를 제공합니다.",
+          icon: <AiOutlineBulb />,
+        },
+      ];
 
   const closeModal = () => setSelectedFeature(null);
 
@@ -99,15 +123,17 @@ const FeatureSection = () => {
           Main Features
           <span>주요기능</span>
         </Title>
-        <CardContainer isVisible={isVisible}>
+        <CardsContainer isVisible={isVisible}>
           {features.map((feature, index) => (
             <FeatureCard
               key={index}
               title={feature.title}
+              description={feature.description}
+              icon={feature.icon}
               onClick={() => setSelectedFeature(feature)}
             />
           ))}
-        </CardContainer>
+        </CardsContainer>
       </Wrapper>
       {selectedFeature && (
         <FeatureModal feature={selectedFeature} onClose={closeModal} />

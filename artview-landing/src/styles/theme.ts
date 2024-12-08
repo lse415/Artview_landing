@@ -2,6 +2,9 @@ const theme = {
   colors: {
     primary: "#333",
     background: "#f5f5f5",
+    pink: "#EA1B83",
+    peach: "#F6C3BB",
+    yellow: "#FFFCAF",
   },
   fonts: {
     small: "1rem",
