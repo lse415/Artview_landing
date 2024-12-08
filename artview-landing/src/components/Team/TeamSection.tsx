@@ -3,10 +3,10 @@ import Wrapper from "../Wrapper";
 import TeamMemberCard from "./TeamMemberCard";
 import Professor from "./Professor";
 
-import feLseIcon from "../../assets/images/artviewers/fe_lse.svg";
-import beLmjIcon from "../../assets/images/artviewers/be_lmj.svg";
-import designPkjIcon from "../../assets/images/artviewers/design_pkj.svg";
-import designSjwIcon from "../../assets/images/artviewers/design_sjw.svg";
+import FeLSE from "../../assets/images/artviewers/fe_lse.svg?react";
+import BeLMJ from "../../assets/images/artviewers/be_lmj.svg?react";
+import DesignPKJ from "../../assets/images/artviewers/design_pkj.svg?react";
+import DesignSJW from "../../assets/images/artviewers/design_sjw.svg?react";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 import media from "../../styles/media";
 
@@ -131,27 +131,27 @@ const TeamSection = () => {
 
   const teamMembers = [
     {
-      image: feLseIcon,
+      image: FeLSE,
       name: "이승은",
       role: "Front-end Developer",
       email: "leesuel0379@gmail.com",
       github: "https://github.com/lse415",
     },
     {
-      image: beLmjIcon,
+      image: BeLMJ,
       name: "이민정",
       role: "Back-end Developer",
       email: "emilywin825@gmail.com",
       github: "https://github.com/emilywin825",
     },
     {
-      image: designPkjIcon,
+      image: DesignPKJ,
       name: "박경진",
       role: "Designer",
       email: "kengjin29@gmail.com",
     },
     {
-      image: designSjwIcon,
+      image: DesignSJW,
       name: "신지우",
       role: "Designer",
       email: "sjw01827@gmail.com",

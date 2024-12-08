@@ -1,8 +1,9 @@
 import styled, { keyframes } from "styled-components";
 import media from "../../styles/media";
+import React, { ComponentType } from "react";
 
 interface TeamMemberProps {
-  image: string;
+  image: ComponentType<React.SVGProps<SVGSVGElement>>;
   name: string;
   role: string;
   email: string;
@@ -75,26 +76,19 @@ const CardContainer = styled.div<{
   }
 `;
 
-const MemberImage = styled.img<{ isReverse?: boolean }>`
-  width: 200px;
-  height: 200px;
-  margin-bottom: 15px;
-  object-fit: cover;
-
-  ${media.mobile} {
-    width: 150px;
-    height: 150px;
-    margin-bottom: 0;
-    ${({ isReverse }) =>
-      isReverse
-        ? `
-            margin-left: 15px;
-          `
-        : `
-            margin-right: 15px;
-          `}
-  }
-`;
+const MemberImage: React.FC<{
+  image: ComponentType<React.SVGProps<SVGSVGElement>>;
+  isReverse?: boolean;
+}> = ({ image: SvgComponent, isReverse }) => (
+  <SvgComponent
+    style={{
+      width: "200px",
+      height: "200px",
+      marginBottom: "15px",
+      ...(isReverse ? { marginLeft: "15px" } : { marginRight: "15px" }),
+    }}
+  />
+);
 
 const MemberDetails = styled.div`
   ${media.mobile} {
@@ -169,7 +163,7 @@ const TeamMemberCard: React.FC<TeamMemberProps & { reverse?: boolean }> = ({
   reverse = false,
 }) => (
   <CardContainer delay={delay} isVisible={isVisible} reverse={reverse}>
-    <MemberImage src={image} alt={`${name} photo`} isReverse={reverse} />
+    <MemberImage image={image} isReverse={reverse} />
     <MemberDetails>
       <MemberName>{name}</MemberName>
       <MemberRole>{role}</MemberRole>
