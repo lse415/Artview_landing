@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import theme from "../../styles/theme";
 
-interface FeatureModalProps {
+export interface FeatureModalProps {
   feature: {
+    detailTitle1: string;
+    detailTitle2: string;
+    detailTitle3?: string;
+    detailInfo1: string;
+    detailInfo2: string;
+    detailInfo3?: string;
     title: string;
     description: string;
+    icon?: JSX.Element;
+    image1?: JSX.Element;
+    image2?: JSX.Element;
+    image3?: JSX.Element;
   };
   onClose: () => void;
 }
@@ -23,68 +34,180 @@ const Overlay = styled.div`
 `;
 
 const ModalContainer = styled.div`
+  display: flex;
+  flex-direction: row;
   background-color: #333;
   color: #fff;
-  width: 600px;
+  width: 60%;
+  height: 80%;
   border-radius: 20px;
   overflow: hidden;
+  position: relative;
 `;
 
 const ImageContainer = styled.div`
   background-color: #fff;
-  height: 200px;
+  width: 40%;
+  height: 100%;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+`;
+
+const ModalImage = styled.div`
+  max-width: 65%;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
-const ModalImage = styled.img`
-  height: 100%;
-  object-fit: cover;
+const ArrowButton = styled.button<{ position: "up" | "down" }>`
+  position: absolute;
+  ${({ position }) => (position === "up" ? "top: 10px;" : "bottom: 10px;")}
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(50, 50, 50, 0.8);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    background-color: rgba(50, 50, 50, 0.6);
+  }
+
+  &:disabled {
+    display: none;
+  }
 `;
 
 const ModalContent = styled.div`
-  padding: 20px;
+  padding: 40px;
   text-align: left;
+  width: 60%;
 `;
 
-const ModalTitle = styled.h2`
-  font-size: 1.8rem;
-  margin-bottom: 10px;
+const ModalTitle = styled.h3`
+  font-size: ${theme.fonts.title_small};
+  margin-bottom: 5px;
 `;
 
 const ModalDescription = styled.p`
-  font-size: 1.2rem;
+  font-size: ${theme.fonts.small};
+`;
+
+const ModalDetail = styled.div`
+  margin-top: 50px;
+`;
+
+const DetailTitle = styled.h3`
+  font-size: 1.5rem;
+`;
+
+const DetailInfo = styled.p`
+  margin-top: 20px;
+  font-size: ${theme.fonts.small};
 `;
 
 const CloseButton = styled.button`
   position: absolute;
   top: 15px;
   right: 15px;
-  background: none;
-  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
   color: #fff;
+  background-color: rgba(50, 50, 50, 0.9);
+  border: none;
   font-size: 1.5rem;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &:hover {
-    color: #ccc;
+    background-color: rgba(50, 50, 50, 0.7);
+  }
+
+  &:focus {
+    outline: none;
   }
 `;
 
-const FeatureModal: React.FC<FeatureModalProps> = ({ feature, onClose }) => (
-  <Overlay>
-    <ModalContainer>
-      <ImageContainer>
-        <ModalImage src="https://temporary.com" alt={feature.title} />
-      </ImageContainer>
-      <ModalContent>
-        <ModalTitle>{feature.title}</ModalTitle>
-        <ModalDescription>{feature.description}</ModalDescription>
-      </ModalContent>
-      <CloseButton onClick={onClose}>&times;</CloseButton>
-    </ModalContainer>
-  </Overlay>
-);
+const FeatureModal: React.FC<FeatureModalProps> = ({ feature, onClose }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const images = [feature.image1, feature.image2, feature.image3].filter(
+    (image) => image !== undefined
+  );
+
+  const titles = [
+    feature.detailTitle1,
+    feature.detailTitle2,
+    feature.detailTitle3,
+  ];
+  const infos = [feature.detailInfo1, feature.detailInfo2, feature.detailInfo3];
+
+  const handleNext = () => {
+    if (currentIndex < images.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+    }
+  };
+
+  const handlePrev = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+    }
+  };
+
+  return (
+    <Overlay>
+      <ModalContainer>
+        <ImageContainer>
+          {images.length > 0 && (
+            <>
+              <ArrowButton
+                position="up"
+                onClick={handlePrev}
+                disabled={currentIndex === 0}
+              >
+                ↑
+              </ArrowButton>
+              <ModalImage>{images[currentIndex]}</ModalImage>
+              <ArrowButton
+                position="down"
+                onClick={handleNext}
+                disabled={currentIndex === images.length - 1}
+              >
+                ↓
+              </ArrowButton>
+            </>
+          )}
+        </ImageContainer>
+        <ModalContent>
+          <ModalTitle>{feature.title}</ModalTitle>
+          <ModalDescription>{feature.description}</ModalDescription>
+          {titles[currentIndex] && infos[currentIndex] && (
+            <ModalDetail>
+              <DetailTitle>✨{titles[currentIndex]}</DetailTitle>
+              <DetailInfo>{infos[currentIndex]}</DetailInfo>
+            </ModalDetail>
+          )}
+        </ModalContent>
+
+        <CloseButton onClick={onClose}>&times;</CloseButton>
+      </ModalContainer>
+    </Overlay>
+  );
+};
 
 export default FeatureModal;
