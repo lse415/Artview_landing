@@ -112,12 +112,14 @@ const FeatureSection = () => {
           title: "소통",
           description: "전시 관람 경험을 나누며 소통합니다.",
           icon: <AiOutlineComment />,
-          image1: <Community1 />,
-          image2: <Community2 />,
-          detailTitle1: "기록의 시작",
-          detailInfo1: "전시 관람을 기록하기 시작합니다.",
-          detailTitle2: "기록의 과정",
-          detailInfo2: "관람 중 중요한 순간을 기록합니다.",
+          image1: <Community2 />,
+          image2: <Community1 />,
+          detailTitle1: "감상 공유하기",
+          detailInfo1:
+            "내 관람 기록을 바탕으로 다른 Artview 사용자들에게 들려줄 여러분의 전시 관람 후기를 남겨 주세요! 감상을 공유하고 싶은 기록을 선택하면 전시회 기본 정보 및 내 별점, 그리고 사진이 자동으로 입력됩니다. 번거로운 타이핑은 Artview에게 맡기고, 여러분은 나누고 싶은 이야기에 집중해 주세요. 감상 키워드 선택을 통해 간결하게 감상을 표현할 수도 있습니다.",
+          detailTitle2: "Artview 커뮤니티",
+          detailInfo2:
+            "Artview 사용자들이 공유한 전시 관람 후기를 SNS 형식으로 모아볼 수 있는 페이지입니다. 불필요한 정보 없이 사용자들의 전시 관람 후기를 둘러보세요. 전체 Artview 사용자들의 후기를 볼 수도 있고, 내가 팔로우하는 사용자들의 후기만 모아 볼 수도 있어요. 아트뷰 커뮤니티를 통해 다양한 아트뷰 사용자들과 소통해 보세요.",
         },
         {
           title: "정보",
@@ -126,12 +128,15 @@ const FeatureSection = () => {
           image1: <Info1 />,
           image2: <Info2 />,
           image3: <Info3 />,
-          detailTitle1: "기록의 시작",
-          detailInfo1: "전시 관람을 기록하기 시작합니다.",
-          detailTitle2: "기록의 과정",
-          detailInfo2: "관람 중 중요한 순간을 기록합니다.",
-          detailTitle3: "기록의 완료",
-          detailInfo3: "모든 기록을 저장하고 공유합니다.",
+          detailTitle1: "전시 정보 둘러보기",
+          detailInfo1:
+            "진행 중인 전시 정보를 둘러봅니다. 진행 중인 전시, 무료 전시, 온라인 전시 카테고리를 사용할 수 있고, 원하는 전시회가 있다면 검색해 보는 것도 가능합니다.",
+          detailTitle2: "전시 정보 상세보기",
+          detailInfo2:
+            "전시회에 대한 상세 정보를 확인합니다. 전시 기간, 장소, 갤러리 운영 시간 확인이 가능합니다. 전시회 장소 버튼을 클릭하면 네이버맵으로 바로 이동할 수 있어요.",
+          detailTitle3: "전시회 후기 모아보기",
+          detailInfo3:
+            "아트뷰 사용자들이 커뮤니티에 남겨준 전시회 후기를 모아 보여드립니다. 전시회 후기를 둘러보고 관람 여부를 결정해 보세요. 아트뷰 사용자들의 별점을 모아 보여주는 아트뷰어 평점으로 전시회에 대한 만족도를 직관적으로 확인할 수 있습니다.",
         },
       ]
     : [
