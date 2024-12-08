@@ -206,7 +206,7 @@ Error generating stack: `+r.message+`
   z-index: 2;
 
   ${BA.mobile} {
-    transform: translate(-10%, 10%);
+    transform: translate(-13%, 10%);
   }
 `,vi=z(go)`
   position: absolute;
