@@ -135,13 +135,13 @@ const StyledMockupLeft = styled(MockupLeft)`
   position: absolute;
   top: 0;
   left: 0;
-  transform: translate(-5%, 10%);
-  width: 300px;
+  transform: translate(-10%, 18%);
+  width: 270px;
   height: auto;
   z-index: 2;
 
   ${media.mobile} {
-    transform: translate(-10%, 10%);
+    transform: translate(-13%, 10%);
   }
 `;
 
@@ -149,12 +149,13 @@ const StyledMockupRight = styled(MockupRight)`
   position: absolute;
   top: 0;
   right: 0;
-  transform: translate(5%, -10%);
-  width: 350px;
+  transform: translate(18%, -5%);
+  width: 320px;
   height: auto;
   z-index: 1;
   ${media.mobile} {
-    transform: translate(5%, -10%); /* 모바일에서 중심으로 조정 */
+    transform: translate(15%, -7%); /* 모바일에서 중심으로 조정 */
+    width: 300px;
   }
 `;
 
