@@ -30,7 +30,6 @@ const Container = styled.section`
   position: relative;
   width: 100%;
   height: 100vh;
-  overflow-x: hidden;
 `;
 
 const ContentGroup = styled.div`
@@ -124,6 +123,8 @@ const ImageGroup = styled.div`
   opacity: 0;
   animation: ${slideUp} 1.5s ease-out forwards;
   animation-delay: 1.3s;
+
+  overflow: visible;
 
   ${media.mobile} {
     max-width: 100%;
