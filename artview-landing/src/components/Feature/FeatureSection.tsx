@@ -76,6 +76,7 @@ const CardsContainer = styled.div<{ isVisible: boolean }>`
 
   ${media.mobile} {
     gap: 20px;
+    flex-direction: column;
     justify-content: center;
   }
 `;
