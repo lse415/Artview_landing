@@ -65,7 +65,7 @@ const ImageContainer = styled.div`
   overflow: hidden;
   ${media.mobile} {
     width: 100%;
-    max-height: 50%;
+    max-height: 75%;
     background-color: ${theme.colors.primary};
     border-radius: 0;
   }
@@ -162,7 +162,6 @@ const DetailTitle = styled.h3`
 `;
 
 const DetailInfo = styled.p`
-  margin-top: 10px;
   font-size: ${theme.fonts.small};
   word-break: break-word;
   overflow-wrap: break-word; /* 텍스트가 영역을 넘어갈 경우 줄바꿈 */
