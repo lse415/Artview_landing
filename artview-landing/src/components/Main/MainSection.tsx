@@ -1,7 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import Wrapper from "../Wrapper";
-import MockupLeft from "../../assets/images/mockup-left-home.svg?react";
-import MockupRight from "../../assets/images/mockup-right-community.svg?react";
+import MainImage from "../../assets/images/mainImage.svg?react";
 import media from "../../styles/media";
 
 const fadeIn = keyframes`
@@ -30,64 +29,46 @@ const Container = styled.section`
   position: relative;
   width: 100%;
   height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  ${media.mobile} {
+    overflow-x: hidden;
+  }
 `;
 
 const ContentGroup = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 5%;
+  width: 80%;
+  height: 60%;
   position: relative;
-  margin-top: -50px;
+  transform: translateY(-7%);
+  margin: 0 auto;
+
+  ${media.tablet} {
+    width: 90%;
+    height: 70%;
+  }
 
   ${media.mobile} {
     display: none;
   }
 `;
 
-//모바일
 const ContentGroupMobile = styled.div`
-  padding-top: 50px;
-  height: 100%;
-`;
-
-const StyledTitle = styled.h1`
-  font-size: 8rem;
-  color: #333;
+  display: flex;
+  flex-direction: column;
+  justify-contents: flex-start;
+  align-items: center;
   position: relative;
-  opacity: 0;
-  animation: ${fadeIn} 1.5s ease-out forwards;
-
-  ${media.mobile} {
-    display: none;
-  }
+  transform: translateY(-300%);
 `;
 
-const StyledTitleLeft = styled(StyledTitle)`
-  animation-delay: 0.5s;
-  top: 150px;
-  left: 0px;
-  z-index: 1;
-
-  ${media.mobile} {
-    display: none;
-  }
-`;
-
-const StyledTitleRight = styled(StyledTitle)`
-  animation-delay: 1s;
-  top: 385px;
-  right: 50px;
-  z-index: 1;
-
-  ${media.mobile} {
-    display: none;
-  }
-`;
-
-// 모바일
 const StyledTitleMobile = styled.h1`
-  font-size: 6rem;
+  font-size: 6vw;
   color: #333;
   text-align: center;
   opacity: 0;
@@ -98,65 +79,42 @@ const StyledTitleMobile = styled.h1`
   }
 `;
 
-const BackgroundCircle = styled.div<{
-  color: string;
-  opacity?: string;
-  size: string;
-  x: string;
-  y: string;
-}>`
-  position: absolute;
-  width: ${({ size }) => size};
-  height: ${({ size }) => size};
-  background-color: ${({ color }) => color};
-  opacity: ${({ opacity }) => opacity || "1"};
-  border-radius: 50%;
-  filter: blur(100px);
-  transform: translate(${({ x }) => x}, ${({ y }) => y});
-  z-index: 0;
+const StyledTitleLeft = styled.h1`
+  font-size: 6vw;
+  color: #333;
+  position: absolute; // ContentGroup 기준 위치 지정
+  top: 30%; // MainImage 좌측상단
+  left: 20%;
+  z-index: 2;
+  opacity: 0;
+  animation: ${fadeIn} 1.5s ease-out forwards;
+  animation-delay: 0.5s;
 `;
 
-const ImageGroup = styled.div`
-  position: relative;
-  width: 400px;
+const StyledTitleRight = styled.h1`
+  font-size: 6vw;
+  color: #333;
+  position: absolute; // ContentGroup 기준 위치 지정
+  bottom: 25%; // MainImage 우측하단
+  right: 17%;
+  z-index: 2;
+  opacity: 0;
+  animation: ${fadeIn} 1.5s ease-out forwards;
+  animation-delay: 1s;
+`;
+
+const StyledMainImage = styled(MainImage)`
+  width: 60%; //ContentGroup의 60%
   height: auto;
+  z-index: 1;
   opacity: 0;
   animation: ${slideUp} 1.5s ease-out forwards;
   animation-delay: 1.3s;
-
-  overflow: visible;
-
   ${media.mobile} {
-    max-width: 100%;
-    margin: 10px auto 0;
-  }
-`;
-
-const StyledMockupLeft = styled(MockupLeft)`
-  position: absolute;
-  top: 0;
-  left: 0;
-  transform: translate(-10%, 18%);
-  width: 270px;
-  height: auto;
-  z-index: 2;
-
-  ${media.mobile} {
-    transform: translate(-13%, 10%);
-  }
-`;
-
-const StyledMockupRight = styled(MockupRight)`
-  position: absolute;
-  top: 0;
-  right: 0;
-  transform: translate(18%, -5%);
-  width: 320px;
-  height: auto;
-  z-index: 1;
-  ${media.mobile} {
-    transform: translate(15%, -7%); /* 모바일에서 중심으로 조정 */
-    width: 300px;
+    position: absolute;
+    width: 150%;
+    left: -30%;
+    top: -10%;
   }
 `;
 
@@ -169,18 +127,7 @@ const MainSection = () => {
         {isMobile && (
           <ContentGroupMobile>
             <StyledTitleMobile>Artview</StyledTitleMobile>
-            <ImageGroup>
-              <StyledMockupLeft />
-              <StyledMockupRight />
-              <BackgroundCircle
-                color="#EA1B83"
-                opacity="0.5"
-                size="300px"
-                x="10%"
-                y="20%"
-              />
-              <BackgroundCircle color="#FFFCAF" size="250px" x="80%" y="90%" />
-            </ImageGroup>
+            <StyledMainImage />
           </ContentGroupMobile>
         )}
 
@@ -188,18 +135,7 @@ const MainSection = () => {
         {!isMobile && (
           <ContentGroup>
             <StyledTitleLeft>Art</StyledTitleLeft>
-            <ImageGroup>
-              <StyledMockupLeft />
-              <StyledMockupRight />
-              <BackgroundCircle
-                color="#EA1B83"
-                opacity="0.5"
-                size="300px"
-                x="10%"
-                y="50%"
-              />
-              <BackgroundCircle color="#FFFCAF" size="250px" x="80%" y="90%" />
-            </ImageGroup>
+            <StyledMainImage />
             <StyledTitleRight>view</StyledTitleRight>
           </ContentGroup>
         )}
