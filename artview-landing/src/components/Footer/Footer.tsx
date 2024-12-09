@@ -1,39 +1,33 @@
 import styled from "styled-components";
 import Wrapper from "../Wrapper";
-import artviewLetter from "../../assets/images/artview_letter_footer.svg";
+import LogoLetter from "../../assets/icons/footer/artview-letter.svg?react";
+import media from "../../styles/media";
 
 const FooterContainer = styled.footer`
   background-color: #333;
-  padding: 80px 0 0;
+  padding: 80px 40px 0;
   color: #fff;
+  margin-top: 80px;
+  text-align: center;
+
+  ${media.mobile} {
+    padding: 80px 0 0 0;
+  }
 `;
 
-const FooterContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  margin: 0 120px;
-`;
-
-const ArtviewLetterWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-`;
-
-const ArtviewLetter = styled.img`
-  width: 100%;
-  margin-top: 50px;
+const StyledLogoLetter = styled(LogoLetter)`
+  width: 60%;
+  height: auto;
+  margin-top: 5%;
+  ${media.mobile} {
+    width: 100%;
+  }
 `;
 
 const Footer = () => (
   <FooterContainer>
     <Wrapper>
-      <FooterContent>
-        <ArtviewLetterWrapper>
-          <ArtviewLetter src={artviewLetter} alt="Artview Letter" />
-        </ArtviewLetterWrapper>
-      </FooterContent>
+      <StyledLogoLetter />
     </Wrapper>
   </FooterContainer>
 );
