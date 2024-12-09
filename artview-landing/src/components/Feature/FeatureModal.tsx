@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import theme from "../../styles/theme";
+import media from "../../styles/media";
 
 export interface FeatureModalProps {
   feature: {
@@ -43,32 +44,53 @@ const ModalContainer = styled.div`
   border-radius: 20px;
   overflow: hidden;
   position: relative;
+
+  ${media.mobile} {
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    overflow-y: auto;
+  }
 `;
 
 const ImageContainer = styled.div`
-  background-color: #fff;
-  width: 40%;
-  height: 100%;
-  border-radius: 20px;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
+  background-color: ${theme.colors.background};
+  border-radius: 0 20px 20px 0;
   overflow: hidden;
+  ${media.mobile} {
+    width: 100%;
+    max-height: 50%;
+    background-color: ${theme.colors.primary};
+    border-radius: 0;
+  }
 `;
 
 const ModalImage = styled.div`
-  max-width: 65%;
+  width: 40%;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  ${media.mobile} {
+    max-width: 50%;
+  }
 `;
 
-const ArrowButton = styled.button<{ position: "up" | "down" }>`
+const ArrowButton = styled.button<{
+  position: "left" | "right" | "up" | "down";
+}>`
   position: absolute;
-  ${({ position }) => (position === "up" ? "top: 10px;" : "bottom: 10px;")}
-  left: 50%;
-  transform: translateX(-50%);
+  ${({ position }) =>
+    position === "up" || position === "left" ? "top: 50%;" : "bottom: 50%;"}
+  ${({ position }) =>
+    position === "left" || position === "up" ? "left: 10px;" : "right: 10px;"}
+  transform: translateY(-50%);
   background-color: rgba(50, 50, 50, 0.8);
   color: #fff;
   border: none;
@@ -88,25 +110,51 @@ const ArrowButton = styled.button<{ position: "up" | "down" }>`
   &:disabled {
     display: none;
   }
+
+  ${media.mobile} {
+    ${({ position }) =>
+      position === "left" || position === "right"
+        ? `
+      top: 50%;
+      bottom: unset;
+      left: ${position === "left" ? "10px" : "unset"};
+      right: ${position === "right" ? "10px" : "unset"};
+    `
+        : ""}
+    transform: translateY(-50%);
+  }
 `;
 
 const ModalContent = styled.div`
   padding: 40px;
   text-align: left;
   width: 60%;
+
+  ${media.mobile} {
+    width: 90%;
+    padding: 20px;
+  }
 `;
 
 const ModalTitle = styled.h3`
   font-size: ${theme.fonts.title_small};
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 `;
 
 const ModalDescription = styled.p`
   font-size: ${theme.fonts.small};
+
+  ${media.mobile} {
+    text-align: justify;
+  }
 `;
 
 const ModalDetail = styled.div`
-  margin-top: 50px;
+  margin-top: 15%;
+
+  ${media.mobile} {
+    margin-top: 0;
+  }
 `;
 
 const DetailTitle = styled.h3`
@@ -114,14 +162,20 @@ const DetailTitle = styled.h3`
 `;
 
 const DetailInfo = styled.p`
-  margin-top: 20px;
+  margin-top: 10px;
   font-size: ${theme.fonts.small};
+  word-break: break-word;
+  overflow-wrap: break-word; /* 텍스트가 영역을 넘어갈 경우 줄바꿈 */
+  white-space: normal; /* 텍스트 줄바꿈을 허용 */
+  ${media.mobile} {
+    text-align: justify; /* 모바일에서 가독성 향상 */
+  }
 `;
 
 const CloseButton = styled.button`
   position: absolute;
   top: 15px;
-  right: 15px;
+  right: 5px;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -169,26 +223,72 @@ const FeatureModal: React.FC<FeatureModalProps> = ({ feature, onClose }) => {
     }
   };
 
+  const isMobile = window.innerWidth <= 480;
+
+  if (isMobile) {
+    return (
+      <Overlay>
+        <ModalContainer>
+          <CloseButton onClick={onClose}>&times;</CloseButton>
+          <ModalContent>
+            <ModalTitle>{feature.title}</ModalTitle>
+            <ModalDescription>{feature.description}</ModalDescription>
+          </ModalContent>
+          <ImageContainer>
+            {images.length > 0 && (
+              <>
+                <ArrowButton
+                  position="left"
+                  onClick={handlePrev}
+                  disabled={currentIndex === 0}
+                >
+                  ←
+                </ArrowButton>
+                <ModalImage>{images[currentIndex]}</ModalImage>
+                <ArrowButton
+                  position="right"
+                  onClick={handleNext}
+                  disabled={currentIndex === images.length - 1}
+                >
+                  →
+                </ArrowButton>
+              </>
+            )}
+          </ImageContainer>
+          <ModalContent>
+            {titles[currentIndex] && infos[currentIndex] && (
+              <ModalDetail>
+                <DetailTitle>✨{titles[currentIndex]}</DetailTitle>
+                <DetailInfo>{infos[currentIndex]}</DetailInfo>
+              </ModalDetail>
+            )}
+          </ModalContent>
+        </ModalContainer>
+      </Overlay>
+    );
+  }
+
   return (
     <Overlay>
       <ModalContainer>
+        <CloseButton onClick={onClose}>&times;</CloseButton>
         <ImageContainer>
           {images.length > 0 && (
             <>
               <ArrowButton
-                position="up"
+                position="left"
                 onClick={handlePrev}
                 disabled={currentIndex === 0}
               >
-                ↑
+                ←
               </ArrowButton>
               <ModalImage>{images[currentIndex]}</ModalImage>
               <ArrowButton
-                position="down"
+                position="right"
                 onClick={handleNext}
                 disabled={currentIndex === images.length - 1}
               >
-                ↓
+                →
               </ArrowButton>
             </>
           )}
@@ -203,8 +303,6 @@ const FeatureModal: React.FC<FeatureModalProps> = ({ feature, onClose }) => {
             </ModalDetail>
           )}
         </ModalContent>
-
-        <CloseButton onClick={onClose}>&times;</CloseButton>
       </ModalContainer>
     </Overlay>
   );

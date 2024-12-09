@@ -7,7 +7,6 @@ const FooterContainer = styled.footer`
   background-color: #333;
   padding: 80px 40px 0;
   color: #fff;
-  margin-top: 80px;
   text-align: center;
 
   ${media.mobile} {
