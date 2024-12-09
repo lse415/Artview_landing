@@ -1,6 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import Wrapper from "../Wrapper";
-import MainImage from "../../assets/images/mainImage.svg?react";
+import MainImage from "../../assets/images/main/mainImage.svg?react";
 import media from "../../styles/media";
 
 const fadeIn = keyframes`
