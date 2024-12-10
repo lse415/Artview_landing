@@ -6,7 +6,7 @@ import media from "../../styles/media";
 
 const Container = styled.section`
   padding: 80px 0;
-  margin: 0 120px;
+  margin: 0 120px 120px 120px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -15,14 +15,34 @@ const Container = styled.section`
   }
 `;
 
+const TitleContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+
+  ${media.mobile} {
+    gap: 15px;
+  }
+`;
+
+const Heart = styled.span`
+  font-size: 3rem;
+
+  ${media.mobile} {
+    font-size: 2rem;
+  }
+`;
+
 const Title = styled.p`
   font-size: 1.5rem;
-  margin-bottom: 20px;
   text-align: left;
+  line-height: 1.8;
+  margin-bottom: 1%;
 
   ${media.mobile} {
     font-size: 1.2rem;
-    margin-bottom: 15px;
+    line-height: 1.6;
   }
 `;
 
@@ -86,13 +106,14 @@ const CommentSection = () => {
   return (
     <Container>
       <Wrapper>
-        <Title>
-          💖
-          <br />
-          일년간 수고한 아트뷰 팀 멤버들에게
-          <br />
-          응원의 메시지를 보내 주세요!
-        </Title>
+        <TitleContainer>
+          <Heart>💌</Heart>
+          <Title>
+            일년간 수고한 아트뷰 팀 멤버들에게
+            <br />
+            응원의 메시지를 보내 주세요!
+          </Title>
+        </TitleContainer>
         <Button onClick={() => setIsModalOpen(true)}>응원하기</Button>
         {isModalOpen && (
           <CommentModal
