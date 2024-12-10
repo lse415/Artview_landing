@@ -18,6 +18,7 @@ import Community2 from "../../assets/images/community/community2.svg?react";
 import Info1 from "../../assets/images/info/info1.svg?react";
 import Info2 from "../../assets/images/info/info2.svg?react";
 import Info3 from "../../assets/images/info/info3.svg?react";
+import theme from "../../styles/theme";
 
 const fadeIn = keyframes`
   from {
@@ -42,13 +43,14 @@ const Container = styled.section`
 
 const Title = styled.h2<{ isVisible: boolean }>`
   font-size: ${({ theme }) => theme.fonts.title};
-  color: #333;
+  color: ${theme.colors.primary};
   margin-bottom: 20px;
 
   span {
     display: block;
     font-size: ${({ theme }) => theme.fonts.title_small};
     margin-top: 10px;
+    color: ${theme.colors.primary};
   }
 
   opacity: 0;

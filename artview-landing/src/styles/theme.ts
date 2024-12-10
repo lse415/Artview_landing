@@ -2,6 +2,7 @@ const theme = {
   colors: {
     primary: "#333",
     background: "#f5f5f5",
+    subtitle: "#666",
     pink: "#FBD2E7",
     peach: "#F6C3BB",
     yellow: "#FFFCAF",
