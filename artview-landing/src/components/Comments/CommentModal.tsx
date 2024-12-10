@@ -79,13 +79,13 @@ interface CommentModalProps {
 
 const CommentModal: React.FC<CommentModalProps> = ({ onClose, onSubmit }) => {
   const [comment, setComment] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = () => {
-    if (comment.trim() === "" || comment.length > 50) {
-      alert("댓글은 1~50자로 작성해 주세요.");
-      return;
-    }
-    onSubmit(comment.trim());
+  const handleSubmit = async () => {
+    setIsSubmitting(true);
+    await onSubmit(comment.trim()); // CommentsSection handleAddComment 호출
+    setIsSubmitting(false);
+    setComment("");
     onClose();
   };
 
@@ -94,13 +94,18 @@ const CommentModal: React.FC<CommentModalProps> = ({ onClose, onSubmit }) => {
       <ModalContainer>
         <TextArea
           maxLength={50}
-          placeholder="댓글을 입력하세요 (최대 50자)"
+          placeholder="아트뷰 팀원들을 응원해 주세요! (최대 50자)"
           value={comment}
           onChange={(e) => setComment(e.target.value)}
+          disabled={isSubmitting}
         />
         <ButtonContainer>
-          <Button onClick={onClose}>취소</Button>
-          <Button onClick={handleSubmit}>확인</Button>
+          <Button onClick={onClose} disabled={isSubmitting}>
+            취소
+          </Button>
+          <Button onClick={handleSubmit} disabled={isSubmitting}>
+            {isSubmitting ? "작성 중..." : "확인"}
+          </Button>
         </ButtonContainer>
       </ModalContainer>
     </ModalOverlay>

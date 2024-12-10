@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import Wrapper from "../Wrapper";
 import CommentModal from "./CommentModal";
 import media from "../../styles/media";
 import theme from "../../styles/theme";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
+import api from "../../services/api";
 
-// 애니메이션 정의
 const floatUpAndHover = keyframes`
   0% {
     transform: translateY(100px) scale(0.9);
@@ -206,20 +206,42 @@ const AnimatedCommentCard = styled.div<{ isNew: boolean }>`
 
 const CommentSection = () => {
   const { ref, isVisible } = useIntersectionObserver();
-  const [comments, setComments] = useState<string[]>([
-    "멋진 프로젝트였습니다. 수고하셨어요!",
-    "아트뷰 화이팅! 응원합니다!",
-    "정말 놀라운 결과네요!",
-    "끝까지 최선을 다한 여러분이 자랑스럽습니다!",
-  ]);
+  const [comments, setComments] = useState<string[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newCommentAdded, setNewCommentAdded] = useState(false);
 
-  const handleAddComment = (newComment: string) => {
-    setComments((prevComments) => [newComment, ...prevComments]);
-    setNewCommentAdded(true);
-    setTimeout(() => setNewCommentAdded(false), 3000);
+  // 댓글 작성
+  const handleAddComment = async (newComment: string) => {
+    if (newComment.trim() === "" || newComment.length > 50) {
+      alert("댓글은 1~50자로 작성해 주세요.");
+      return;
+    }
+
+    try {
+      await api.post("/graduation", { comment: newComment });
+      setComments((prevComments) => [newComment, ...prevComments]);
+      setNewCommentAdded(true);
+      setTimeout(() => setNewCommentAdded(false), 3000);
+    } catch (error) {
+      console.error("POST ERROR:", error);
+    }
   };
+
+  // 댓글 조회
+  const fetchComments = async () => {
+    try {
+      const response = await api.get("/graduation");
+      console.log("Fetched comments:", response.data.comments);
+      setComments(response.data.comments || []);
+      console.log(import.meta.env.VITE_BASE_URL);
+    } catch (error) {
+      console.error("GET ERROR", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchComments();
+  }, []);
 
   return (
     <Background ref={ref}>
