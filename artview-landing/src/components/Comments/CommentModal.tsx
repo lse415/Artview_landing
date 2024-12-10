@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import theme from "../../styles/theme";
+import media from "../../styles/media";
 
 const ModalOverlay = styled.div`
   position: fixed;
@@ -26,13 +27,41 @@ const ModalContainer = styled.div`
   align-items: flex-start;
   position: relative;
   box-sizing: border-box;
+  ${media.mobile} {
+    width: 80%;
+    height: 50%;
+  }
+`;
+
+const FlexContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+
+  ${media.mobile} {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
 const ModalTitle = styled.p`
   font-size: 1rem;
   font-weight: bold;
   color: ${theme.colors.primary};
-  margin-bottom: 3%;
+  margin: 0;
+`;
+
+const CharLimit = styled.p`
+  font-size: 0.85rem;
+  font-weight: normal;
+  color: #999;
+  margin: 0;
+  margin-left: 3px;
+
+  ${media.mobile} {
+    margin-left: 0;
+    margin-top: 5px;
+  }
 `;
 
 const TextArea = styled.textarea`
@@ -120,7 +149,10 @@ const CommentModal: React.FC<CommentModalProps> = ({ onClose, onSubmit }) => {
     <ModalOverlay>
       <ModalContainer>
         <CloseButton onClick={onClose}>&times;</CloseButton>
-        <ModalTitle>아트뷰 팀원들을 응원해 주세요! (최대 50자)</ModalTitle>
+        <FlexContainer>
+          <ModalTitle>아트뷰 팀원들을 응원해 주세요✨</ModalTitle>
+          <CharLimit>(최대 50자)</CharLimit>
+        </FlexContainer>
         <TextArea
           maxLength={50}
           value={comment}
