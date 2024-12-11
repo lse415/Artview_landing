@@ -83,14 +83,12 @@ const ModalImage = styled.div`
 `;
 
 const ArrowButton = styled.button<{
-  position: "left" | "right" | "up" | "down";
+  position: "left" | "right";
 }>`
   position: absolute;
-  ${({ position }) =>
-    position === "up" || position === "left" ? "top: 50%;" : "bottom: 50%;"}
-  ${({ position }) =>
-    position === "left" || position === "up" ? "left: 10px;" : "right: 10px;"}
-  transform: translateY(-50%);
+  top: 50%; /* 버튼의 위치를 상단에서 50%로 고정 */
+  ${({ position }) => (position === "left" ? "left: 10px;" : "right: 10px;")}
+  transform: translateY(-50%); /* 수직 방향 중앙 정렬 */
   background-color: rgba(50, 50, 50, 0.8);
   color: #fff;
   border: none;
@@ -109,19 +107,6 @@ const ArrowButton = styled.button<{
 
   &:disabled {
     display: none;
-  }
-
-  ${media.mobile} {
-    ${({ position }) =>
-      position === "left" || position === "right"
-        ? `
-      top: 50%;
-      bottom: unset;
-      left: ${position === "left" ? "10px" : "unset"};
-      right: ${position === "right" ? "10px" : "unset"};
-    `
-        : ""}
-    transform: translateY(-50%);
   }
 `;
 
