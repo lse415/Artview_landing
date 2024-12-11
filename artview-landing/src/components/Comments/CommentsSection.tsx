@@ -5,7 +5,10 @@ import CommentModal from "./CommentModal";
 import media from "../../styles/media";
 import theme from "../../styles/theme";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
-import api from "../../services/api";
+import {
+  fetchComments as fetchCommentsFromFirebase,
+  addComment as addCommentToFirebase,
+} from "../../services/api";
 
 const floatUpAndHover = keyframes`
   0% {
@@ -210,7 +213,7 @@ const CommentSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newCommentAdded, setNewCommentAdded] = useState(false);
 
-  // 댓글 작성
+  // 댓글 등록
   const handleAddComment = async (newComment: string) => {
     if (newComment.trim() === "" || newComment.length > 50) {
       alert("댓글은 1~50자로 작성해 주세요.");
@@ -218,23 +221,23 @@ const CommentSection = () => {
     }
 
     try {
-      await api.post("/graduation", { comment: newComment });
+      await addCommentToFirebase(newComment); // Firestore에 댓글 등록
       setComments((prevComments) => [newComment, ...prevComments]);
       setNewCommentAdded(true);
       setTimeout(() => setNewCommentAdded(false), 3000);
     } catch (error) {
-      console.error("POST ERROR:", error);
+      console.error("Firestore Add Comment Error:", error);
     }
   };
 
   // 댓글 조회
   const fetchComments = async () => {
     try {
-      const response = await api.get("/graduation");
-      console.log("Fetched comments:", response.data.comments);
-      setComments(response.data.comments || []);
+      const fetchedComments = await fetchCommentsFromFirebase(); // Firestore에서 댓글 가져오기
+      console.log("Fetched comments:", fetchedComments);
+      setComments(fetchedComments);
     } catch (error) {
-      console.error("GET ERROR", error);
+      console.error("Firestore Fetch Comments Error", error);
     }
   };
 
