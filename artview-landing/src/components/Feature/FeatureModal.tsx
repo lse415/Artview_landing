@@ -163,6 +163,7 @@ const DetailTitle = styled.h3`
 
 const DetailInfo = styled.p`
   font-size: ${theme.fonts.small};
+  margin-top: 5%;
   word-break: break-word;
   overflow-wrap: break-word; /* 텍스트가 영역을 넘어갈 경우 줄바꿈 */
   white-space: normal; /* 텍스트 줄바꿈을 허용 */

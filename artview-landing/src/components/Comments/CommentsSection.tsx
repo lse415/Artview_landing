@@ -233,7 +233,6 @@ const CommentSection = () => {
       const response = await api.get("/graduation");
       console.log("Fetched comments:", response.data.comments);
       setComments(response.data.comments || []);
-      console.log(import.meta.env.VITE_BASE_URL);
     } catch (error) {
       console.error("GET ERROR", error);
     }
